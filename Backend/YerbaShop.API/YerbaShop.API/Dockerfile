@@ -10,10 +10,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["YerbaShop.API/YerbaShop.API.csproj", "YerbaShop.API/"]
-RUN dotnet restore "YerbaShop.API/YerbaShop.API.csproj"
+COPY ["YerbaShop.API.csproj", "."]
+RUN dotnet restore "./YerbaShop.API.csproj"
 COPY . .
-WORKDIR "/src/YerbaShop.API"
+WORKDIR "/src/."
 RUN dotnet build "YerbaShop.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
