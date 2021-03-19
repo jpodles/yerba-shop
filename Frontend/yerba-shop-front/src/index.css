@@ -1,13 +1,262 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab&display=swap");
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Roboto Slab";
+  color: #333;
+  background-color: #fffadf;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  min-width: 60vw;
+  margin: 0 auto;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.navbar .logo {
+  display: flex;
+  color: #458143;
+  font-size: 50px;
+  align-items: center;
+}
+
+.navbar img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.navbar .links {
+  margin-left: auto;
+  font-size: 2rem;
+}
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+}
+.navbar a:hover {
+  color: #458143;
+}
+
+.content {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 15px;
+  min-height: 400px;
+  flex: 1;
+  min-width: 60vw;
+}
+
+.product-list {
+  display: flex;
+  /* margin: 0 50px; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* max-width: 1500px; */
+}
+
+.product-list img {
+  width: 200px;
+  height: 250px;
+  margin: 10px;
+}
+
+.blog-prev {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  width: 300px;
+  height: 450px;
+  margin: 2px 3px;
+  margin-bottom: 30px;
+  border: 1px solid #e4e1d3;
+  background-color: #fdfaeb;
+  cursor: pointer;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+}
+.blog-prev:hover {
+  box-shadow: 20px 10px 8px rgba(0, 0, 0, 0.1);
+  background-color: #88b451;
+}
+.blog-prev:hover :is(h2, .desc, .price) {
+  color: #fffadf;
+}
+.blog-prev h2 {
+  font-size: 20px;
+  color: #88b451;
+  margin: 8px auto;
+  background: transparent;
+}
+
+.blog-prev :is(.desc) {
+  position: relative;
+  display: block;
+  font-size: 16px;
+  font-family: "Open Sans";
+  background: transparent;
+}
+
+.blog-prev .price {
+  color: #88b451;
+  background: transparent;
+  font-size: 22px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  left: 0;
+}
+
+.blog-prev button {
+  width: 80px;
+  align-self: flex-end;
+}
+.blog-prev button:hover {
+  background-color: #dad5bd;
+}
+.blog-prev button:focus {
+  background-color: #c7c2ac;
+  box-shadow: inset 0 0 5px black;
+  border: 1px solid black;
+  border-style: inset;
+}
+
+.load {
+  min-width: 800px;
+  min-height: 600px;
+  font-size: 40px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+.footer {
+  border-top: 1px solid #e4e1d3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* height: 80px; */
+  max-width: 60vw;
+  margin: 0 auto;
+  /* flex-shrink: 0; */
+}
+
+.footer p {
+  padding: 20px;
+  align-self: flex-end;
+  /* margin-top: 20px; */
+}
+.product-details {
+  display: flex;
+  max-width: 60vw;
+}
+.product-details .text {
+  min-width: 300px;
+  margin-left: 50px;
+  margin-right: auto;
+}
+.product-details :is(p, div, h2),
+.create .product-details :is(p, div, h2) {
+  margin-top: 10px;
+}
+.product-details img {
+  height: 400px;
+}
+.product-details .price {
+  font-size: 22px;
+  animation: blinkingText 0.2s infinite;
+}
+
+@keyframes blinkingText {
+  0% {
+    color: red;
+  }
+  49% {
+    color: red;
+  }
+  60% {
+    color: transparent;
+  }
+  99% {
+    color: transparent;
+  }
+  100% {
+    color: red;
+  }
+}
+.product-details h2 {
+  font-size: 28px;
+}
+
+.form-content {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+}
+.form-content label {
+  text-align: left;
+  display: block;
+}
+.form-content h2 {
+  font-size: 20px;
+  color: #88b451;
+  margin-bottom: 30px;
+}
+.form-content :is(input, textarea, select) {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+.form-content button {
+  background: #88b451;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.create .product-details {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.create .product-details .create-image {
+  width: 400px;
+}
+.product-prev {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.not-found h2 {
+  font-size: 36px;
+}
+.not-found :is(img, h2, p, a) {
+  margin-top: 10px;
+}
+.not-found-homepage {
+  font-size: 2.5rem;
+}
+
+.not-found img {
+  width: 300px;
+  align-self: center;
 }
