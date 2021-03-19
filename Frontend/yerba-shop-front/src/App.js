@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import logo from "./logo.svg";
+>>>>>>> 943200a3124f09d155d987ce8eb98de3ad25692c
 import "./App.css";
 
 function App() {
@@ -14,7 +18,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React test
         </a>
       </header>
     </div>
