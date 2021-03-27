@@ -9,8 +9,9 @@ const ProductDetails = () => {
 
   return (
     <div>
-      {isPending && <div>Loading</div>}
+      {isPending && <div className="load">Loading...</div>}
       {error && <div>{error}</div>}
+
       {product && (
         <div className="product-details">
           <img src={product.ImageLink} alt="ProductImage" />

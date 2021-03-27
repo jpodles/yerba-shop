@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "ProductName": "Amanda Con Palo",
+      "ProductName": "Amanda Con Palo 1kg",
       "ProductPrice": "34.00",
       "ProductWeight": "1",
       "ProductBrand": "Amanda",
@@ -12,7 +12,7 @@
       "id": 1
     },
     {
-      "ProductName": "Mateine Caffeine",
+      "ProductName": "Mateine Caffeine 0.5kg",
       "ProductPrice": "19.00",
       "ProductWeight": "0.5",
       "ProductBrand": "Mateine",
@@ -21,6 +21,17 @@
       "LongDescription": "Mateine Caffeine+ to mate w klasycznej odsłonie, bez dodatków. Podobnie jak w Taragui Energia kluczową rolę dla osiągnięcia wyższych zawartości kofeiny stanowi przede wszystkim odpowiedni czas zbiorów z mocno nasłonecznionych plantacji. Yerba ta konfekcjonowana jest w Polsce. Producent podaje sugerowaną porcję 20g. Z tak niewielkiej ilości suszu uzyskuje się napar o zawartości 65,8 mg kofeiny na 100 ml. To mniej więcej tyle, co w przeciętnej filiżance mocnego espresso.",
       "ImageLink": "https://image.ceneostatic.pl/data/products/94288230/i-mateine-yerba-mate-caffeine-500g.jpg",
       "id": 2
+    },
+    {
+      "ProductName": "Test Yerba 0.5kg",
+      "ProductPrice": "21.37",
+      "ProductWeight": "0.5",
+      "ProductBrand": "Amanda",
+      "Country": "Paragwaj",
+      "ShortDescription": "TEST TEST TEST TEST",
+      "LongDescription": "TEST TEST TEST TEST",
+      "ImageLink": "https://bellabis.pl/environment/cache/images/500_500_productGfx_560/am_despalada_03.jpg",
+      "id": 3
     }
   ]
 }
