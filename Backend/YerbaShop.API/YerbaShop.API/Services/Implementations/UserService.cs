@@ -49,7 +49,7 @@ namespace YerbaShop.API.Services
 
         List<User> IUserService.GetUsers()
         {
-            throw new NotImplementedException();
+            return _userRepository.GetUsers();
         }
     }
 }
