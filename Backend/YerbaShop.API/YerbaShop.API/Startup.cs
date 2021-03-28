@@ -4,6 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using YerbaShop.API.Repositories.Implementations;
+using YerbaShop.API.Repositories.Interfaces;
+using YerbaShop.API.Services;
+using YerbaShop.API.Services.Interfaces;
 
 namespace YerbaShop.API
 {
@@ -19,7 +23,9 @@ namespace YerbaShop.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //  change on real repository when database will be created.
+            services.AddScoped<IUserRepository, UserRepositoryPlaceholder>();
+            services.AddScoped<IUserService, UserService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
