@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import SendIcon from "@material-ui/icons/Send";
+
 const Login = ({ Log, error }) => {
   const [details, setDetails] = useState({ name: "", email: "", password: "" });
 
@@ -8,7 +11,7 @@ const Login = ({ Log, error }) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className="login-form">
       <div className="form-inner">
         <h2>Login</h2>
         {error !== "" ? <div className="error">{error}</div> : ""}
@@ -44,7 +47,15 @@ const Login = ({ Log, error }) => {
             value={details.password}
           />
         </div>
-        <input type="submit" value="LOGIN" />
+        <Button
+          type="submit"
+          value="LOGIN"
+          variant="contained"
+          color="primary"
+          endIcon={<SendIcon />}
+        >
+          LOGIN
+        </Button>
       </div>
     </form>
   );

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 const Navbar = () => {
   return (
@@ -11,10 +13,20 @@ const Navbar = () => {
         {"Yerba Mate!"}
       </Link>
       <div className="links">
-        <Link to="/">Home</Link>
-      </div>
-      <div className="logowanie">
-        <Link to="/login"><p>Zaloguj się</p></Link>
+        <ButtonGroup variant="contained" color="primary" size="large">
+          <Button>
+            <Link to="/">Home</Link>
+          </Button>
+          <Button>
+            <Link to="/login">Zaloguj się</Link>
+          </Button>
+        </ButtonGroup>
+
+        {/* <div className="logowanie">
+          <Link to="/login">
+            <p>Zaloguj się</p>
+          </Link>
+        </div> */}
       </div>
     </nav>
   );

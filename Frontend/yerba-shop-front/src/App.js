@@ -7,13 +7,29 @@ import ProductDetails from "./components/ProductDetails";
 import Login from "./components/Login";
 import "./index.scss";
 import React, { useState } from "react";
-import { findRenderedComponentWithType } from "react-dom/test-utils";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 function App() {
   const adminUser = {
     email: "admin@admin.com",
     password: "admin123",
   };
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#88b451",
+        contrastText: "#fff",
+      },
+      secondary: {
+        main: "#d1ccb2",
+        contrastText: "#333",
+      },
+    },
+    typography: {
+      fontFamily: "Roboto Slab",
+    },
+  });
 
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
@@ -41,39 +57,41 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div className="content">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/products/:id">
-              <ProductDetails />
-            </Route>
-            <Route path="/login">
-              <div className="app">
-                {user.email !== "" ? (
-                  <div className="welcome">
-                    <h2>
-                      Welcome, <span>{user.name}</span>
-                    </h2>
-                    <button onClick={Logout}>Logout</button>
-                  </div>
-                ) : (
-                  <Login Log={Log} error={error} />
-                )}
-              </div>
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <div className="content">
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/products/:id">
+                <ProductDetails />
+              </Route>
+              <Route path="/login">
+                <div className="app">
+                  {user.email !== "" ? (
+                    <div className="welcome">
+                      <h2>
+                        Welcome, <span>{user.name}</span>
+                      </h2>
+                      <button onClick={Logout}>Logout</button>
+                    </div>
+                  ) : (
+                    <Login Log={Log} error={error} />
+                  )}
+                </div>
+              </Route>
+              <Route path="*">
+                <NotFound />
+              </Route>
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </Router>
+      </Router>
+    </ThemeProvider>
   );
 }
 

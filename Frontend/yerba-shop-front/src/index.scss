@@ -1,21 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   font-family: "Roboto Slab";
-  color: #333;
-  background-color: #fffadf;
 }
-input,
-button {
+input {
   appearance: none;
   background: none;
   outline: none;
 }
-
+a {
+  color: #333;
+}
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  color: #333;
+  background-color: #fffadf;
 }
 
 .navbar {
@@ -53,15 +54,17 @@ button {
 
 .navbar .links {
   margin-left: auto;
-  font-size: 2rem;
+  div {
+    Button {
+      a {
+        color: #fffadf;
+      }
+    }
+  }
 }
 .navbar a {
   margin-left: 16px;
   text-decoration: none;
-}
-.navbar a:hover,
-p:hover {
-  color: #458143;
 }
 
 .home {
@@ -70,10 +73,23 @@ p:hover {
     height: auto;
     text-align: center;
     flex-wrap: wrap;
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
+    span {
+      // text-align: center;
+      vertical-align: bottom;
+    }
 
     .search-form {
       margin-left: 20px;
+    }
+    .chips {
+      margin-top: 20px;
+      div {
+        font-size: 16px;
+        &:hover {
+          background: #333;
+        }
+      }
     }
   }
 }
@@ -89,6 +105,7 @@ p:hover {
 
 .product-list {
   display: flex;
+  margin-top: 30px;
   /* margin: 0 50px; */
   flex-direction: row;
   flex-wrap: wrap;
@@ -135,7 +152,6 @@ p:hover {
   position: relative;
   display: block;
   font-size: 16px;
-  font-family: "Open Sans";
   background: transparent;
 }
 
@@ -187,17 +203,42 @@ p:hover {
 .footer p {
   padding: 20px;
   align-self: flex-end;
+  transition: 0.5s;
+  cursor: default;
   /* margin-top: 20px; */
+  &:hover {
+    color: #88b451;
+    transition: 0.5s;
+  }
 }
+
 .product-details {
   display: flex;
   max-width: 60vw;
+  .text {
+    min-width: 300px;
+    margin-left: 50px;
+    margin-right: auto;
+
+    p {
+      font-weight: 400;
+      font-size: larger;
+    }
+    .desc {
+      max-width: 70ch;
+      word-wrap: break-word;
+    }
+    .quant {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      font-size: 16px;
+      Button {
+        margin: 0 10px;
+      }
+    }
+  }
 }
-.product-details .text {
-  min-width: 300px;
-  margin-left: 50px;
-  margin-right: auto;
-}
+
 .product-details :is(p, div, h2),
 .create .product-details :is(p, div, h2) {
   margin-top: 10px;
@@ -293,28 +334,26 @@ p:hover {
   width: 300px;
   align-self: center;
 }
-form {
-  display: block;
-  position: relative;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  z-index: 1;
-}
-form .form-inner {
-  position: relative;
-  display: block;
-  background-color: #fff;
-  padding: 30px;
-  z-index: 2;
-  position: absolute;
-  background: #fffadf;
-}
+// form {
+//   display: block;
+//   position: relative;
+//   top: -5px;
+//   left: -5px;
+//   right: -5px;
+//   bottom: -5px;
+//   z-index: 1;
+// }
+// form .form-inner {
+//   // position: relative;
+//   // display: block;
+//   // background-color: #fff;
+//   // padding: 30px;
+//   // z-index: 2;
+//   // position: absolute;
+//   // background: #fffadf;
+// }
 form .form-inner h2 {
-  color: #888;
   font-size: 28px;
-  font-weight: 500px;
   margin-bottom: 30px;
 }
 
@@ -383,4 +422,8 @@ form .form-inner input [type="submit"],
 .welcome h2 span {
   color: #fe4880;
   font-weight: 700;
+}
+
+.login-form {
+  margin: 30px auto;
 }
