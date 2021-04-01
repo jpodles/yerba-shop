@@ -3,18 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using YerbaShop.API.Repositories.Implementations;
+using YerbaShop.API.Repositories.Interfaces;
+
 
 namespace YerbaShop.API.Controllers
 {
     [ApiController]
-    [Route("/api/products")]
+    [Route("api/v1/products")]
     public class ProductsController : ControllerBase
     {
-        private readonly ProductRepository _yerbaShopRepository;
+        private readonly IProductRepository _yerbaShopRepository;
         private readonly IMapper _mapper;
 
-        public ProductsController(ProductRepository yerbaShopRepository, IMapper mapper)
+        public ProductsController(IProductRepository yerbaShopRepository, IMapper mapper)
         {
             _yerbaShopRepository = yerbaShopRepository ?? throw new ArgumentNullException(nameof(yerbaShopRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(yerbaShopRepository));

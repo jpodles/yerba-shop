@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using YerbaShop.API.Contexts;
 using YerbaShop.API.Entities;
-using YerbaShop.API.Repositories.Intefraces;
+using YerbaShop.API.Repositories.Interfaces;
 
 namespace YerbaShop.API.Repositories.Implementations
 {

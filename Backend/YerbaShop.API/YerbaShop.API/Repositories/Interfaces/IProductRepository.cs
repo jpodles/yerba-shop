@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace YerbaShop.API.Repositories.Intefraces
+namespace YerbaShop.API.Repositories.Interfaces
 {
     public interface IProductRepository
     {

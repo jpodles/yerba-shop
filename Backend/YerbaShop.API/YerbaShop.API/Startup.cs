@@ -7,15 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text;
+using YerbaShop.API.Contexts;
 using YerbaShop.API.Repositories.Implementations;
 using YerbaShop.API.Repositories.Interfaces;
 using YerbaShop.API.Services;
 using YerbaShop.API.Services.Interfaces;
-using System;
-using YerbaShop.API.Contexts;
-using YerbaShop.API.Repositories.Implementations;
-using YerbaShop.API.Repositories.Intefraces;
 
 namespace YerbaShop.API
 {
@@ -31,10 +29,15 @@ namespace YerbaShop.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             //  change on real repository when database will be created.
             services.AddScoped<IUserRepository, UserRepositoryPlaceholder>();
             services.AddScoped<IUserService, UserService>();
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(
+                options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "YerbaShop.API", Version = "v1" });
@@ -55,10 +58,16 @@ namespace YerbaShop.API
                 };
             });
 
+
             var connString = Configuration["ConnectionStrings:YerbaShopDBConnString"];
             services.AddDbContext<YerbaShopContext>(o => o.UseSqlServer(connString));
+
             services.AddScoped<IProductRepository, ProductRepository>();
+
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
