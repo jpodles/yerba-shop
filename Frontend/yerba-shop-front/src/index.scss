@@ -68,6 +68,9 @@ a {
 }
 
 .home {
+  display: flex;
+  flex-direction: column;
+
   .search {
     font-size: 1.55rem;
     height: auto;
@@ -95,6 +98,7 @@ a {
 }
 
 .content {
+  display: flex;
   margin-left: auto;
   margin-right: auto;
   padding: 20px 15px;
@@ -105,6 +109,7 @@ a {
 
 .product-list {
   display: flex;
+  justify-content: center;
   margin-top: 30px;
   /* margin: 0 50px; */
   flex-direction: row;
@@ -114,7 +119,7 @@ a {
 
 .product-list img {
   width: 200px;
-  height: 250px;
+  height: 200px;
   margin: 10px;
 }
 
@@ -122,8 +127,8 @@ a {
   display: inline-block;
   text-align: center;
   position: relative;
-  width: 300px;
-  height: 450px;
+  width: 330px;
+  height: 500px;
   margin: 2px 3px;
   margin-bottom: 30px;
   border: 1px solid #e4e1d3;
@@ -142,6 +147,7 @@ a {
   color: #fffadf;
 }
 .blog-prev h2 {
+  padding: 10px;
   font-size: 20px;
   color: #88b451;
   margin: 8px auto;
@@ -151,6 +157,7 @@ a {
 .blog-prev :is(.desc) {
   position: relative;
   display: block;
+  padding: 0 20px;
   font-size: 16px;
   background: transparent;
 }

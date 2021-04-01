@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YerbaShop.API.Contexts;
 
 namespace YerbaShop.API.Migrations
 {
     [DbContext(typeof(YerbaShopContext))]
-    partial class YerbaShopContextModelSnapshot : ModelSnapshot
+    [Migration("20210401185724_ProductsChanged")]
+    partial class ProductsChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -306,7 +308,7 @@ namespace YerbaShop.API.Migrations
                             Country = "Brazylia",
                             LongDescription = "Odkryj moc naturalnej kofeiny i cennych dla zdrowia składników w prawdziwie zmysłowej odsłonie! Verde Mate Más IQ to doskonale dopracowana kompozycja ziół, owoców i yerba mate. Oprócz listków ostrokrzewu z leśnej uprawy w brazylijskim stanie Parana, Mas IQ zawiera wyciąg z ginkgo biloba oraz żeń-szeń. Ziołową bazę uzupełniają owocowe dodatki w postaci skórki pomarańczy i kawałków ananasa. Kompozycję zamyka znany z dużej zawartości kofeiny ekstrakt z guarany. Po Verde Mate Mas IQ najchętniej sięgają uczniowie, studenci, informatycy i inne osoby pracujące umysłowo.",
                             ProductBrand = "Verde Mate",
-                            ProductImage = "https://www.poyerbani.pl/pol_pl_Verde-Mate-Green-Mas-IQ-0-5kg-4240_1.png",
+                            ProductImage = "https://www.poyerbani.pl/product-pol-4240-Verde-Mate-Green-Mas-IQ-0-5kg.html",
                             ProductName = "Verde Mate Green Mas IQ",
                             ProductPrice = 27.99m,
                             ProductWeight = 0.5,

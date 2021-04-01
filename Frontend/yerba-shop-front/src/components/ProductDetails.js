@@ -11,7 +11,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 const ProductDetails = () => {
-  const [quant, setQuant] = useState(0);
+  const [quant, setQuant] = useState(1);
 
   const { id } = useParams();
   const { data: product, error, isPending } = useFetch(
@@ -35,11 +35,14 @@ const ProductDetails = () => {
 
       {product && (
         <div className="product-details">
-          <img src={product.ImageLink} alt="ProductImage" />
+          <img src={product.ProductImage} alt="ProductImage" />
           <div className="text">
             <h2>{product.ProductName}</h2>
+            <h3>Producent: {product.ProductBrand}</h3>
+            <h3>Kraj: {product.Country}</h3>
             <p>Opis produktu:</p>
             <div className="desc">{product.LongDescription}</div>
+
             <p className="price">Cena: {product.ProductPrice} zł KUP TERAZ!!</p>
             <div className="quant">
               <Button

@@ -9,7 +9,8 @@ using YerbaShop.API.Repositories.Interfaces;
 namespace YerbaShop.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/products")]
+    [Route("products")]
+
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository _yerbaShopRepository;

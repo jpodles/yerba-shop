@@ -48,7 +48,7 @@ const ProductList = ({ products }) => {
     }
     if (weight !== "") {
       filteredProducts = filteredProducts.filter(
-        (product) => product.ProductWeight === weight
+        (product) => product.ProductWeight == weight
       );
     }
     if (brand !== "") {
@@ -87,6 +87,7 @@ const ProductList = ({ products }) => {
             <option value="">Kraj</option>
             <option value="Argentyna">Argentyna</option>
             <option value="Paragwaj">Paragwaj</option>
+            <option value="Brazylia">Brazylia</option>
           </Select>
         </FormControl>
         <FormControl className="search-form">
@@ -101,8 +102,8 @@ const ProductList = ({ products }) => {
           >
             {/* <option aria-label="Weight select" value="" /> */}
             <option value="">Waga</option>
-            <option value="1">1 kg</option>
-            <option value="0.5">0.5 kg</option>
+            <option value={1}>1kg</option>
+            <option value={0.5}>0.5kg</option>
           </Select>
         </FormControl>
         <FormControl className="search-form">
@@ -118,7 +119,11 @@ const ProductList = ({ products }) => {
             {/* <option aria-label="Brand select" value="" /> */}
             <option value="all">Marka</option>
             <option value="Amanda">Amanda</option>
-            <option value="Mateine">Mateine</option>
+            <option value="Kurupi">Kurupi</option>
+            <option value="Las Marias">Las Marias</option>
+            <option value="Molinos">Molinos</option>
+            <option value="CBSe">CBSe</option>
+            <option value="Kraus">Kraus</option>
           </Select>
         </FormControl>
 
@@ -155,10 +160,12 @@ const ProductList = ({ products }) => {
       <div className="product-list">
         {items.map((item, key) => {
           return (
-            <Link to={`/products/${item.id}`} key={item.id}>
-              <div className="blog-prev" key={item.id}>
-                <h2>{item.ProductName}</h2>
-                <img src={item.ImageLink} alt="ProductImage" />
+            <Link to={`/products/${item.Id}`} key={item.Id}>
+              <div className="blog-prev" key={item.Id}>
+                <h2>
+                  {item.ProductName} {item.ProductWeight}kg
+                </h2>
+                <img src={item.ProductImage} alt="ProductImage" />
                 <div className="desc">{item.ShortDescription}</div>
                 <div className="price">{item.ProductPrice} zł</div>
               </div>
