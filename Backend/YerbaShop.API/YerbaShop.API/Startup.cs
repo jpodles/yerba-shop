@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using YerbaShop.API.Contexts;
+using YerbaShop.API.Services;
 
 namespace YerbaShop.API
 {
@@ -25,6 +28,10 @@ namespace YerbaShop.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "YerbaShop.API", Version = "v1" });
             });
+
+            var connString = Configuration["ConnectionStrings:YerbaShopDBConnString"];
+            services.AddDbContext<YerbaShopContext>(o => o.UseSqlServer(connString));
+            services.AddScoped<IYerbaShopRepository, YerbaShopRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
