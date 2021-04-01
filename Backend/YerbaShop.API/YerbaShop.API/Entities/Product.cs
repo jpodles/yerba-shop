@@ -14,6 +14,7 @@ namespace YerbaShop.API.Entities
         public string ProductName { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(18,4)")]
         public decimal ProductPrice { get; set; }
 
         [Required]

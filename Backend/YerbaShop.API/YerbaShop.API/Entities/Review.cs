@@ -9,7 +9,6 @@ namespace YerbaShop.API.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-
         [Required]
         public string ReviewText { get; set; }
 
@@ -17,8 +16,10 @@ namespace YerbaShop.API.Entities
         public string TypeOfReview { get; set; }
 
         public int ProductId { get; set; }
+        public Product Product { get; set; }
 
         public int UserId { get; set; }
+        //public User User { get; set; }
 
     }
 }

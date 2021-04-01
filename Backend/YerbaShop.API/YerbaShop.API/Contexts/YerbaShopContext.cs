@@ -7,6 +7,12 @@ namespace YerbaShop.API.Contexts
     {
         public DbSet<Product> Products { get; set; }
 
+
+        public YerbaShopContext(DbContextOptions<YerbaShopContext> options) : base(options)
+        {
+
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Product>().HasData(
@@ -89,6 +95,7 @@ namespace YerbaShop.API.Contexts
                     Id = 7,
                     ProductName = "Cruz de Malta Elaborada Con Paloa",
                     ProductBrand = "Molinos",
+                    ProductImage = "https://www.poyerbani.pl/pol_pl_Cruz-de-Malta-Elaborada-Con-Palo-1kg-1067_1.png",
                     Country = "Argentyna",
                     ProductPrice = 39.99M,
                     ProductWeight = 1.0,

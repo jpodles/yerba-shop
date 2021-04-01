@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using YerbaShop.API.Services;
+using YerbaShop.API.Repositories.Implementations;
 
 namespace YerbaShop.API.Controllers
 {
@@ -11,10 +11,10 @@ namespace YerbaShop.API.Controllers
     [Route("/api/products")]
     public class ProductsController : ControllerBase
     {
-        private readonly IYerbaShopRepository _yerbaShopRepository;
+        private readonly ProductRepository _yerbaShopRepository;
         private readonly IMapper _mapper;
 
-        public ProductsController(IYerbaShopRepository yerbaShopRepository, IMapper mapper)
+        public ProductsController(ProductRepository yerbaShopRepository, IMapper mapper)
         {
             _yerbaShopRepository = yerbaShopRepository ?? throw new ArgumentNullException(nameof(yerbaShopRepository));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(yerbaShopRepository));

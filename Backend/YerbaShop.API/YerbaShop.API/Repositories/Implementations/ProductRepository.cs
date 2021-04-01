@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using YerbaShop.API.Contexts;
 using YerbaShop.API.Entities;
+using YerbaShop.API.Repositories.Intefraces;
 
-namespace YerbaShop.API.Services
+namespace YerbaShop.API.Repositories.Implementations
 {
-    public class YerbaShopRepository : IYerbaShopRepository
+    public class ProductRepository : IProductRepository
     {
         private YerbaShopContext _context;
 
-        public YerbaShopRepository(YerbaShopContext context)
+        public ProductRepository(YerbaShopContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
