@@ -34,6 +34,11 @@ namespace YerbaShop.API.Repositories.Implementations
             throw new NotImplementedException();
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return exampleData.FirstOrDefault(x => x.Email.Equals(email));
+        }
+
         public User GetUserById(string id)
         {
             return exampleData.Find(x => x.Id.Equals(id));

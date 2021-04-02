@@ -12,5 +12,6 @@ namespace YerbaShop.API.Repositories.Interfaces
         public User GetUserById(string id);
         public User DeleteUserById(string id);
         public User CreateUser(User user);
+        public User GetUserByEmail(string email);
     }
 }

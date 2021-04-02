@@ -10,6 +10,7 @@ namespace YerbaShop.API.Services.Interfaces
     {
         public List<User> GetUsers();
         public User GetUserById(string id);
+        public User GetUserByEmail(string email);
         public User DeleteUserById(string id);
         public User CreateUser(User user);
     }
