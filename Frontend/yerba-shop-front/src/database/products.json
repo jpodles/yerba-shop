@@ -1,0 +1,37 @@
+{
+  "products": [
+    {
+      "ProductName": "Amanda Con Palo 1kg",
+      "ProductPrice": "34.00",
+      "ProductWeight": "1",
+      "ProductBrand": "Amanda",
+      "Country": "Argentyna",
+      "ShortDescription": "Lekka, grubo cięta niepylasta",
+      "LongDescription": "Amanda to marka reprezentacyjna plantacji La Cachuera założonej przez polskich imigrantów w Argentynie.Amanda con palo to niezbyt rozdrobniony susz złożony z dużych kawałków gałązek i listków. Just grubo cięta i mało pylasta – nie sprawi problemów z przygotowaniem nawet nowicjuszom",
+      "ImageLink": "https://sklepzherbatami.pl/4854/yerba-mate-amanda-elaborada-con-palo-1000g.jpg",
+      "id": 1
+    },
+    {
+      "ProductName": "Mateine Caffeine 0.5kg",
+      "ProductPrice": "19.00",
+      "ProductWeight": "0.5",
+      "ProductBrand": "Mateine",
+      "Country": "Paragwaj",
+      "ShortDescription": "Paragwajska, klasyczna Yerba Mate o podwyższonej zawartości kofeiny",
+      "LongDescription": "Mateine Caffeine+ to mate w klasycznej odsłonie, bez dodatków. Podobnie jak w Taragui Energia kluczową rolę dla osiągnięcia wyższych zawartości kofeiny stanowi przede wszystkim odpowiedni czas zbiorów z mocno nasłonecznionych plantacji. Yerba ta konfekcjonowana jest w Polsce. Producent podaje sugerowaną porcję 20g. Z tak niewielkiej ilości suszu uzyskuje się napar o zawartości 65,8 mg kofeiny na 100 ml. To mniej więcej tyle, co w przeciętnej filiżance mocnego espresso.",
+      "ImageLink": "https://image.ceneostatic.pl/data/products/94288230/i-mateine-yerba-mate-caffeine-500g.jpg",
+      "id": 2
+    },
+    {
+      "ProductName": "Test Yerba 0.5kg",
+      "ProductPrice": "21.37",
+      "ProductWeight": "0.5",
+      "ProductBrand": "Amanda",
+      "Country": "Argentyna",
+      "ShortDescription": "TEST TEST TEST TEST",
+      "LongDescription": "TEST TEST TEST TEST",
+      "ImageLink": "https://bellabis.pl/environment/cache/images/500_500_productGfx_560/am_despalada_03.jpg",
+      "id": 3
+    }
+  ]
+}

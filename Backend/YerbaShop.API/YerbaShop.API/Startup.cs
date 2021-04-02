@@ -1,12 +1,15 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text;
+using YerbaShop.API.Contexts;
 using YerbaShop.API.Repositories.Implementations;
 using YerbaShop.API.Repositories.Interfaces;
 using YerbaShop.API.Services;
@@ -27,9 +30,15 @@ namespace YerbaShop.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             //  change on real repository when database will be created.
             services.AddScoped<IUserRepository, UserRepositoryPlaceholder>();
             services.AddScoped<IUserService, UserService>();
+            services.AddControllers()
+                .AddJsonOptions(
+                options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
             services.AddScoped<ICurrentUser, CurrentUser>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -51,6 +60,17 @@ namespace YerbaShop.API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
+
+
+            var connString = Configuration["ConnectionStrings:YerbaShopDBConnString"];
+            services.AddDbContext<YerbaShopContext>(o => o.UseSqlServer(connString));
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +86,13 @@ namespace YerbaShop.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .SetIsOriginAllowed(origin => true) // allow any origin
+              .AllowCredentials()); // allow credentials
+
 
             app.UseAuthorization();
 
