@@ -27,6 +27,11 @@ namespace YerbaShop.API.Services
             throw new NotImplementedException();
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return _userRepository.GetUserByEmail(email);
+        }
+
         public User GetUserById(string id)
         {
             throw new NotImplementedException();

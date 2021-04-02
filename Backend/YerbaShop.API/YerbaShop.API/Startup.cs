@@ -13,6 +13,7 @@ using YerbaShop.API.Contexts;
 using YerbaShop.API.Repositories.Implementations;
 using YerbaShop.API.Repositories.Interfaces;
 using YerbaShop.API.Services;
+using YerbaShop.API.Services.Implementations;
 using YerbaShop.API.Services.Interfaces;
 
 namespace YerbaShop.API
@@ -38,6 +39,8 @@ namespace YerbaShop.API
                 .AddJsonOptions(
                 options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
+            services.AddScoped<ICurrentUser, CurrentUser>();
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "YerbaShop.API", Version = "v1" });
