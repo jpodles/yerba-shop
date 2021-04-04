@@ -7,9 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
+using Newtonsoft.Json.Serialization;
+
 using System;
 using System.Text;
 using System.Text.Json.Serialization;
+
 using YerbaShop.API.Contexts;
 using YerbaShop.API.Repositories.Implementations;
 using YerbaShop.API.Repositories.Interfaces;
@@ -37,15 +41,20 @@ namespace YerbaShop.API
             services.AddScoped<IUserRepository, UserRepositoryPlaceholder>();
             services.AddScoped<IUserService, UserService>();
             services.AddControllers()
-                .AddJsonOptions(
-                options =>
-                {
-                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                });
+                .AddNewtonsoftJson(
+                    options =>
+                    {
+                        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                        options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+
+                    }
+
+
+                );
+
 
             services.AddScoped<ICurrentUser, CurrentUser>();
-            services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "YerbaShop.API", Version = "v1" });

@@ -12,6 +12,10 @@ namespace YerbaShop.API.Profiles
             CreateMap<Entities.Review, Models.ReviewDto>();
             CreateMap<Entities.Product, Models.ProductDto>();
 
+            CreateMap<Models.ReviewCreationDto, Entities.Review>();
+            CreateMap<Models.ReviewEditDto, Entities.Review>().ReverseMap();
+
+
 
         }
 
