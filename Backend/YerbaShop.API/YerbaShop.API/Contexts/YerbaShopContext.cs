@@ -6,11 +6,15 @@ namespace YerbaShop.API.Contexts
     public class YerbaShopContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
-
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderHistory> OrderHistory { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
 
         public YerbaShopContext(DbContextOptions<YerbaShopContext> options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -278,6 +282,78 @@ namespace YerbaShop.API.Contexts
                         LongDescription = "Odkryj moc naturalnej kofeiny i cennych dla zdrowia składników w prawdziwie zmysłowej odsłonie! Verde Mate Más IQ to doskonale dopracowana kompozycja ziół, owoców i yerba mate. Oprócz listków ostrokrzewu z leśnej uprawy w brazylijskim stanie Parana, Mas IQ zawiera wyciąg z ginkgo biloba oraz żeń-szeń. Ziołową bazę uzupełniają owocowe dodatki w postaci skórki pomarańczy i kawałków ananasa. Kompozycję zamyka znany z dużej zawartości kofeiny ekstrakt z guarany. Po Verde Mate Mas IQ najchętniej sięgają uczniowie, studenci, informatycy i inne osoby pracujące umysłowo.",
                     }
             );
+
+            modelBuilder.Entity<User>()
+                .HasOne(o => o.Address)
+                .WithOne(a => a.User)
+                .HasForeignKey<Address>(o => o.UserId);
+
+            modelBuilder.Entity<Address>().HasData(
+                new Address()
+                {
+                    Id = 1,
+                    Street = "Łazowska 4",
+                    PostCode = "42-450",
+                    City = "Łazy",
+                    UserId = 1
+                },
+                new Address()
+                {
+                    Id = 2,
+                    Street = "Michałowksa 5",
+                    PostCode = "42-450",
+                    City = "Łazy",
+                    UserId = 2
+                }
+                );
+
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Id = 1,
+                    FirstName = "Tomasz",
+                    LastName = "Kowalski",
+                    Email = "tomus@gmail.com",
+                    Password = "qwerty",
+                    AddressId = 1,
+
+                },
+                new User
+                {
+                    Id = 2,
+                    FirstName = "Michał",
+                    LastName = "Nogalski",
+                    Email = "michalek@gmail.com",
+                    Password = "qwerty",
+                    AddressId = 2,
+                }
+
+                );
+
+            modelBuilder.Entity<Review>()
+             .Property(p => p.TypeOfReview)
+             .HasConversion<string>();
+
+            modelBuilder.Entity<Review>().HasData(
+                new Review()
+                {
+                    Id = 1,
+                    ReviewText = "Smaczna Yerba polecam!",
+                    TypeOfReview = TypeOfReview.Like,
+                    ProductId = 1,
+                    UserId = 1,
+                },
+                  new Review()
+                  {
+                      Id = 2,
+                      ReviewText = "Bardzo dobra klasyczna Yerba!",
+                      TypeOfReview = TypeOfReview.Like,
+                      ProductId = 1,
+                      UserId = 2,
+                  }
+
+                );
+
             base.OnModelCreating(modelBuilder);
         }
     }
