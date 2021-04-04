@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using YerbaShop.API.Models;
+using YerbaShop.API.Entities;
 using YerbaShop.API.Repositories.Interfaces;
 using YerbaShop.API.Services.Interfaces;
 
@@ -22,7 +20,7 @@ namespace YerbaShop.API.Services
             throw new NotImplementedException();
         }
 
-        public User DeleteUserById(string id)
+        public User DeleteUserById(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -32,7 +30,7 @@ namespace YerbaShop.API.Services
             return _userRepository.GetUserByEmail(email);
         }
 
-        public User GetUserById(string id)
+        public User GetUserById(Guid id)
         {
             throw new NotImplementedException();
         }

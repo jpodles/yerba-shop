@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using YerbaShop.API.Models;
+﻿using System.Collections.Generic;
+using YerbaShop.API.Entities;
 
 namespace YerbaShop.API.Services.Interfaces
 {

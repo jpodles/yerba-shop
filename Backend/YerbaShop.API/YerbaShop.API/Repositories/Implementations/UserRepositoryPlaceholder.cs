@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using YerbaShop.API.Models;
+using YerbaShop.API.Entities;
 using YerbaShop.API.Repositories.Interfaces;
 
 namespace YerbaShop.API.Repositories.Implementations
@@ -14,8 +13,8 @@ namespace YerbaShop.API.Repositories.Implementations
         public UserRepositoryPlaceholder()
         {
             exampleData = new List<User>();
-            var exampleUser1 = new User("1", "Bartek", "Chodak", "bartek@email", "strongPassw0rd", "1"); ;
-            var exampleUser2 = new User("2", "Marcin", "Drzewo", "marcin@email", "ezPass", "2"); 
+            var exampleUser1 = new User(1, "Bartek", "Chodak", "bartek@email", "strongPassw0rd", 1); ;
+            var exampleUser2 = new User(2, "Marcin", "Drzewo", "marcin@email", "ezPass", 2);
 
             exampleData.Add(exampleUser1);
             exampleData.Add(exampleUser2);
@@ -24,12 +23,12 @@ namespace YerbaShop.API.Repositories.Implementations
         public User CreateUser(User user)
         {
             if (user == null) throw new NullReferenceException("User cannot be null");
-            else 
-            exampleData.Add(user);
+            else
+                exampleData.Add(user);
             return user;
         }
 
-        public User DeleteUserById(string id)
+        public User DeleteUserById(int id)
         {
             throw new NotImplementedException();
         }
@@ -39,7 +38,7 @@ namespace YerbaShop.API.Repositories.Implementations
             return exampleData.FirstOrDefault(x => x.Email.Equals(email));
         }
 
-        public User GetUserById(string id)
+        public User GetUserById(int id)
         {
             return exampleData.Find(x => x.Id.Equals(id));
         }

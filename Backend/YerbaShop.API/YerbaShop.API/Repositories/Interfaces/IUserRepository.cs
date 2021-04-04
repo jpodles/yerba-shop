@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using YerbaShop.API.Models;
+﻿using System.Collections.Generic;
+using YerbaShop.API.Entities;
 
 namespace YerbaShop.API.Repositories.Interfaces
 {
     public interface IUserRepository
     {
         public List<User> GetUsers();
-        public User GetUserById(string id);
-        public User DeleteUserById(string id);
+        public User GetUserById(int id);
+        public User DeleteUserById(int id);
         public User CreateUser(User user);
         public User GetUserByEmail(string email);
     }
