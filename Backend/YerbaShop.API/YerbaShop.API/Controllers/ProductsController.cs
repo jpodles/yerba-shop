@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using YerbaShop.API.Repositories.Interfaces;
 
-
 namespace YerbaShop.API.Controllers
 {
     [ApiController]
     [Route("products")]
-
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository _yerbaShopRepository;
@@ -29,7 +27,6 @@ namespace YerbaShop.API.Controllers
             return Ok(_mapper.Map<IEnumerable<Models.ProductShortDto>>(productsEntites));
         }
 
-
         [HttpGet("{productId}")]
         public async Task<IActionResult> GetProduct(int productId)
         {
@@ -40,9 +37,7 @@ namespace YerbaShop.API.Controllers
                 return NotFound();
             }
 
-            return Ok(product);
+            return Ok(_mapper.Map<Models.ProductDto>(product));
         }
-
-
     }
 }

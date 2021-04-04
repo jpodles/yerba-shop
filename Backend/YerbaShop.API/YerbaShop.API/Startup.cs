@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Text;
+using System.Text.Json.Serialization;
 using YerbaShop.API.Contexts;
 using YerbaShop.API.Repositories.Implementations;
 using YerbaShop.API.Repositories.Interfaces;
@@ -37,7 +38,11 @@ namespace YerbaShop.API
             services.AddScoped<IUserService, UserService>();
             services.AddControllers()
                 .AddJsonOptions(
-                options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+                options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                });
 
             services.AddScoped<ICurrentUser, CurrentUser>();
             services.AddControllers();
@@ -61,16 +66,12 @@ namespace YerbaShop.API
                 };
             });
 
-
             var connString = Configuration["ConnectionStrings:YerbaShopDBConnString"];
             services.AddDbContext<YerbaShopContext>(o => o.UseSqlServer(connString));
 
             services.AddScoped<IProductRepository, ProductRepository>();
 
-
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,7 +93,6 @@ namespace YerbaShop.API
               .AllowAnyHeader()
               .SetIsOriginAllowed(origin => true) // allow any origin
               .AllowCredentials()); // allow credentials
-
 
             app.UseAuthorization();
 

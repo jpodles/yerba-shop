@@ -19,12 +19,16 @@ namespace YerbaShop.API.Repositories.Implementations
 
         public async Task<Product> GetProductAsync(int id)
         {
-            return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            return await _context.Products
+                .Include(p => p.Reviews).ThenInclude(r => r.User)
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {
             return await _context.Products.ToListAsync();
         }
+
+
     }
 }
