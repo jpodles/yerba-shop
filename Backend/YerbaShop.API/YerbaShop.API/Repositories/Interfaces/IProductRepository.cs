@@ -8,3 +8,4 @@ namespace YerbaShop.API.Repositories.Interfaces
         Task<IEnumerable<Entities.Product>> GetProductsAsync();
         Task<Entities.Product> GetProductAsync(int id);
     }
+}
