@@ -32,6 +32,49 @@
       "LongDescription": "TEST TEST TEST TEST",
       "ImageLink": "https://bellabis.pl/environment/cache/images/500_500_productGfx_560/am_despalada_03.jpg",
       "id": 3
+    },
+    {
+      "id": 4,
+      "ProductName": "Amanda Despelada Sin Palo",
+      "ProductPrice": 24.99,
+      "ProductWeight": 0.5,
+      "ImageLink": "https://www.poyerbani.pl/pol_pl_Amanda-Despalada-Sin-Palo-0-5kg-894_1.png",
+      "ProductBrand": "Amanda",
+      "Country": "Argentyna",
+      "ShortDescription": "Yerba Mate Amanda Despalada Sin Palo 0,5 kg to klasyk z Argentyny. Yerba mate bez dodatków, bez patyczków – wyłącznie listki ostrokrzewu paragwajskiego.",
+      "LongDescription": "Yerba mate Amanda Despalada produkowana w argentyńskiej prowincji Missiones. Opakowanie zawiera dosyć grubo pocięte listki yerba mate bez gałązek. Despalada służy szybkiemu pobudzeniu, które wynika z proporcji suszu. Despalada jest zdecydowanie klasyczną mate. A to oznacza, że prócz lekko ziemistego aromatu jest w niej wyczuwalna goryczka.",
+      "Reviews": [
+        {
+          "Id": 1,
+          "ReviewText": "Smaczna Yerba polecam!",
+          "TypeOfReview": "Like",
+          "User": {
+            "Id": 1,
+            "FirstName": "Tomasz",
+            "LastName": "Kowalski"
+          }
+        },
+        {
+          "Id": 2,
+          "ReviewText": "Bardzo dobra klasyczna Yerba!",
+          "TypeOfReview": "Like",
+          "User": {
+            "Id": 2,
+            "FirstName": "Michał",
+            "LastName": "Nogalski"
+          }
+        },
+        {
+          "Id": 3,
+          "ReviewText": "Mnie nie podeszła :/",
+          "TypeOfReview": "Dislike",
+          "User": {
+            "Id": 3,
+            "FirstName": "Ryszard",
+            "LastName": "Matula"
+          }
+        }
+      ]
     }
   ]
 }
