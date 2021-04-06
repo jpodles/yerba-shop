@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -11,10 +12,12 @@ namespace YerbaShop.API.Services.Implementations
     public class CurrentUser : ICurrentUser
     {
         private IUserService _userService;
+        private IMapper _mapper;
 
-        public CurrentUser(IUserService userService)
+        public CurrentUser(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         public UserDto GetLoggedInUser(ClaimsPrincipal claims)
@@ -23,7 +26,7 @@ namespace YerbaShop.API.Services.Implementations
 
             var user = _userService.GetUserByEmail(email);
 
-            return new UserDto(user);
+            return _mapper.Map<UserDto>(user);
         }
     }
 }

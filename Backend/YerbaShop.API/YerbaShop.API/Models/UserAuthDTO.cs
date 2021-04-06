@@ -2,12 +2,12 @@
 {
     public class UserAuthDTO
     {
-        public int id { get; set; }
         public string email { get; set; }
+        public string password { get; set; }
 
-        public UserAuthDTO(int id, string email)
+        public UserAuthDTO( string email, string password)
         {
-            this.id = id;
+            this.password = password;
             this.email = email;
         }
     }

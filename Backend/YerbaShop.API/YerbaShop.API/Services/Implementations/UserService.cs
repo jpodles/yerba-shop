@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using YerbaShop.API.Entities;
 using YerbaShop.API.Repositories.Interfaces;
 using YerbaShop.API.Services.Interfaces;
@@ -15,44 +16,34 @@ namespace YerbaShop.API.Services
             _userRepository = userRepository;
         }
 
-        public User CreateUser(User user)
+        public void CreateUser(User user)
+        {
+           user.Password = StringSha256Hash(user.Password);
+           _userRepository.CreateUser(user);
+           _userRepository.Save();
+        }
+
+        public User DeleteUserById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public User DeleteUserById(Guid id)
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await _userRepository.GetUserByEmail(email);
+        }
+
+        public User GetUserById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public User GetUserByEmail(string email)
+        public async Task<IEnumerable<User>> GetUsers()
         {
-            return _userRepository.GetUserByEmail(email);
+            return await _userRepository.GetUsers();
         }
 
-        public User GetUserById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<User> GetUsers()
-        {
-            throw new NotImplementedException();
-        }
-
-        User IUserService.DeleteUserById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        User IUserService.GetUserById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<User> IUserService.GetUsers()
-        {
-            return _userRepository.GetUsers();
-        }
+        private string StringSha256Hash(string text) =>
+        string.IsNullOrEmpty(text) ? string.Empty : BitConverter.ToString(new System.Security.Cryptography.SHA256Managed().ComputeHash(System.Text.Encoding.UTF8.GetBytes(text))).Replace("-", string.Empty);
     }
 }

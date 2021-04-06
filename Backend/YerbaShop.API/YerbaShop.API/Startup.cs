@@ -38,7 +38,7 @@ namespace YerbaShop.API
             services.AddCors();
 
             //  change on real repository when database will be created.
-            services.AddScoped<IUserRepository, UserRepositoryPlaceholder>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddControllers()
                 .AddNewtonsoftJson(

@@ -21,19 +21,20 @@ namespace YerbaShop.API.Controllers
     {
         private IConfiguration _config;
         private ICurrentUser _currentUser;
-
-        public JWTAuthController(IConfiguration config, ICurrentUser currentUser)
+        private IUserService _userService;
+        public JWTAuthController(IConfiguration config, ICurrentUser currentUser, IUserService userService)
         {
             _config = config;
             _currentUser = currentUser;
+            _userService = userService;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody] UserAuthDTO login)
+        public async Task<IActionResult> Login([FromBody] UserAuthDTO login)
         {
             IActionResult response = Unauthorized();
-            var user = AuthenticateUser(login);
+            var user = await AuthenticateUser(login);
 
             if (user != null)
             {
@@ -75,17 +76,18 @@ namespace YerbaShop.API.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private UserAuthDTO AuthenticateUser(UserAuthDTO login)
+        private async Task<UserAuthDTO> AuthenticateUser(UserAuthDTO login)
         {
+            var user = await _userService.GetUserByEmail(login.email);
+            login.password = StringSha256Hash(login.password);
 
-            //Validate the User Credentials    
-            //Demo Purpose, I have Passed HardCoded User Information    
-            // to change when db will be available 
-            if (!(login.email.Equals("bartek@email")))
-            {
-                throw new UnauthorizedAccessException();
-            }
+            if(user is null  || user.Password != login.password ) throw new UnauthorizedAccessException();
+          
             return login;
         }
+
+
+        private string StringSha256Hash(string text) =>
+       string.IsNullOrEmpty(text) ? string.Empty : BitConverter.ToString(new System.Security.Cryptography.SHA256Managed().ComputeHash(System.Text.Encoding.UTF8.GetBytes(text))).Replace("-", string.Empty);
     }
 }
