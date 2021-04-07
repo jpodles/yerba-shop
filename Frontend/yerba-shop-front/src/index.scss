@@ -104,6 +104,7 @@ a {
   padding: 20px 15px;
   min-height: 400px;
   flex: 1;
+
   // min-width: 60vw;
 }
 
@@ -114,6 +115,7 @@ a {
   /* margin: 0 50px; */
   flex-direction: row;
   flex-wrap: wrap;
+  flex: 1;
   /* max-width: 1500px; */
 }
 
@@ -222,6 +224,7 @@ a {
 .product-details {
   display: flex;
   max-width: 60vw;
+  flex-grow: 1;
   .text {
     min-width: 300px;
     margin-left: 50px;
@@ -433,4 +436,45 @@ form .form-inner input [type="submit"],
 
 .login-form {
   margin: 30px auto;
+}
+
+.reviews {
+  // display: flex;
+  margin-top: 200px;
+  flex-direction: row;
+
+  .reviews-header {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+
+  .test-form {
+    margin-bottom: 50px;
+    .input-body {
+      margin-top: 20px;
+    }
+  }
+  .review {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #e4dfc8;
+    border-radius: 10px;
+    svg {
+      width: auto;
+      height: 50px;
+      float: left;
+      margin-right: 20px;
+    }
+    .review-user {
+      color: rgb(85, 85, 85);
+      font-size: 0.75rem;
+      margin-bottom: 25px;
+    }
+    .review-body {
+      font-size: 1.25rem;
+      margin-bottom: 5px;
+      font-weight: 400;
+    }
+  }
 }
