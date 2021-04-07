@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -22,11 +23,13 @@ namespace YerbaShop.API.Controllers
         private IConfiguration _config;
         private ICurrentUser _currentUser;
         private IUserService _userService;
-        public JWTAuthController(IConfiguration config, ICurrentUser currentUser, IUserService userService)
+        private IMapper _mapper;
+        public JWTAuthController(IConfiguration config, ICurrentUser currentUser, IUserService userService, IMapper mapper)
         {
             _config = config;
             _currentUser = currentUser;
             _userService = userService;
+            _mapper = mapper;
         }
 
         [AllowAnonymous]
@@ -47,13 +50,12 @@ namespace YerbaShop.API.Controllers
 
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult GetUserInfo()
+        public async Task<IActionResult> GetUserInfo()
         {
             var currentUser = HttpContext.User;
-            var response = Ok(_currentUser.GetLoggedInUser(currentUser));
+            var user = await _currentUser.GetLoggedInUser(currentUser);
 
-           // var response = Ok(new List<string>(){email});
-            return response;
+            return Ok(_mapper.Map<UserDto>(user));
         }
 
         private string GenerateJSONWebToken(UserAuthDTO userInfo)
