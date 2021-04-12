@@ -11,7 +11,9 @@ namespace YerbaShop.API.Profiles
         public UserProfile()
         {
             CreateMap<Entities.User, Models.UserDto>();
-            CreateMap< Models.UserDto, Entities.User>();
+            CreateMap<Entities.User, Models.UserDto>();
+            CreateMap<Models.UserDto, Models.UserUpdateDto>();
+            CreateMap<Models.UserUpdateDto, Models.UserDto>();
             CreateMap<Entities.User, Models.UserAuthDTO>();
             CreateMap<Entities.User, Models.UserRegistrationDto>();
             CreateMap<Models.UserRegistrationDto, Entities.User>();

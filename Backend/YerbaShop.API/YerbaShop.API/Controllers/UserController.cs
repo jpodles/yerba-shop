@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,11 +19,13 @@ namespace YerbaShop.API.Controllers
     {
         private IUserService _userService;
         private readonly IMapper _mapper;
+        private ICurrentUser _currentUser;
 
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService, IMapper mapper, ICurrentUser currentUser)
         {
             _userService = userService;
             _mapper = mapper;
+            _currentUser = currentUser;
         }
 
         [HttpGet]
@@ -39,6 +43,16 @@ namespace YerbaShop.API.Controllers
             var userToSave = _mapper.Map<User>(user);
             _userService.CreateUser(userToSave);
             return Ok(_mapper.Map<UserDto>(userToSave));
+        }
+
+        [HttpPatch]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> UpdateUser(UserUpdateDto newData)
+        {
+            var currentUser = HttpContext.User;
+            var user = await _currentUser.GetLoggedInUser(currentUser);
+            _userService.UpdateUser(newData, user.Id);
+            return Ok(_mapper.Map<UserDto>(newData));
         }
     }
 }

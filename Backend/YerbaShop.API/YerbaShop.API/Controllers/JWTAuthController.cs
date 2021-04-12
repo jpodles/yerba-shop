@@ -63,7 +63,7 @@ namespace YerbaShop.API.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            var claims = new [] 
+            var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.email)
             };

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using YerbaShop.API.Entities;
+using YerbaShop.API.Models;
 
 namespace YerbaShop.API.Repositories.Interfaces
 {
@@ -12,5 +13,7 @@ namespace YerbaShop.API.Repositories.Interfaces
         public void CreateUser(User user);
         public Task<User> GetUserByEmail(string email);
         public bool Save();
+
+        public void UpdateUser(User user);
     }
 }

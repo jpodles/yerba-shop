@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YerbaShop.API.Contexts;
 using YerbaShop.API.Entities;
+using YerbaShop.API.Models;
 using YerbaShop.API.Repositories.Interfaces;
 
 namespace YerbaShop.API.Repositories.Implementations
@@ -45,6 +46,11 @@ namespace YerbaShop.API.Repositories.Implementations
             throw new NotImplementedException();
         }
 
+        public void UpdateUser(User user)
+        {
+            _context.Users.Update(user);
+            Save();
+        }
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);

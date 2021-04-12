@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using YerbaShop.API.Entities;
+using YerbaShop.API.Models;
 using YerbaShop.API.Repositories.Interfaces;
 using YerbaShop.API.Services.Interfaces;
 
@@ -42,7 +44,30 @@ namespace YerbaShop.API.Services
         {
             return await _userRepository.GetUsers();
         }
+        public async void UpdateUser(UserUpdateDto userToUpdate, int id)
+        {
+            var user = await _userRepository.GetUserById(id);
+            var updatedUser = UpdateUserFields(user, userToUpdate);
+            _userRepository.UpdateUser(updatedUser);        
+        }
 
+        private User UpdateUserFields(User user, UserUpdateDto newData)
+        {
+            if (!string.IsNullOrEmpty(newData.Email))
+            {
+                user.Email = newData.Email;
+            }
+            if (!string.IsNullOrEmpty(newData.FirstName))
+            {
+                user.FirstName = newData.FirstName;
+            }
+            if (!string.IsNullOrEmpty(newData.LastName))
+            {
+                user.LastName = newData.LastName;
+            }
+
+            return user;
+        }
         private string StringSha256Hash(string text) =>
         string.IsNullOrEmpty(text) ? string.Empty : BitConverter.ToString(new System.Security.Cryptography.SHA256Managed().ComputeHash(System.Text.Encoding.UTF8.GetBytes(text))).Replace("-", string.Empty);
     }
