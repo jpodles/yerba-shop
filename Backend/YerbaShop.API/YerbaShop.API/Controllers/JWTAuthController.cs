@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -21,19 +22,22 @@ namespace YerbaShop.API.Controllers
     {
         private IConfiguration _config;
         private ICurrentUser _currentUser;
-
-        public JWTAuthController(IConfiguration config, ICurrentUser currentUser)
+        private IUserService _userService;
+        private IMapper _mapper;
+        public JWTAuthController(IConfiguration config, ICurrentUser currentUser, IUserService userService, IMapper mapper)
         {
             _config = config;
             _currentUser = currentUser;
+            _userService = userService;
+            _mapper = mapper;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login([FromBody] UserAuthDTO login)
+        public async Task<IActionResult> Login([FromBody] UserAuthDTO login)
         {
             IActionResult response = Unauthorized();
-            var user = AuthenticateUser(login);
+            var user = await AuthenticateUser(login);
 
             if (user != null)
             {
@@ -46,13 +50,12 @@ namespace YerbaShop.API.Controllers
 
         [HttpGet]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult GetUserInfo()
+        public async Task<IActionResult> GetUserInfo()
         {
             var currentUser = HttpContext.User;
-            var response = Ok(_currentUser.GetLoggedInUser(currentUser));
+            var user = await _currentUser.GetLoggedInUser(currentUser);
 
-           // var response = Ok(new List<string>(){email});
-            return response;
+            return Ok(_mapper.Map<UserDto>(user));
         }
 
         private string GenerateJSONWebToken(UserAuthDTO userInfo)
@@ -60,7 +63,7 @@ namespace YerbaShop.API.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            var claims = new [] 
+            var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Email, userInfo.email)
             };
@@ -75,17 +78,18 @@ namespace YerbaShop.API.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private UserAuthDTO AuthenticateUser(UserAuthDTO login)
+        private async Task<UserAuthDTO> AuthenticateUser(UserAuthDTO login)
         {
+            var user = await _userService.GetUserByEmail(login.email);
+            login.password = StringSha256Hash(login.password);
 
-            //Validate the User Credentials    
-            //Demo Purpose, I have Passed HardCoded User Information    
-            // to change when db will be available 
-            if (!(login.email.Equals("bartek@email")))
-            {
-                throw new UnauthorizedAccessException();
-            }
+            if(user is null  || user.Password != login.password ) throw new UnauthorizedAccessException();
+          
             return login;
         }
+
+
+        private string StringSha256Hash(string text) =>
+       string.IsNullOrEmpty(text) ? string.Empty : BitConverter.ToString(new System.Security.Cryptography.SHA256Managed().ComputeHash(System.Text.Encoding.UTF8.GetBytes(text))).Replace("-", string.Empty);
     }
 }
