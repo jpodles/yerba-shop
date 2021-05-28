@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  api:
+    image: yerba-shop-api
+    build:
+      context: .
+      dockerfile: Backend/YerbaShop.API/YerbaShop.API/Dockerfile
+    ports:
+      - 8000:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=DEVELOPMENT
+  frontend:
+    image: yerba-shop-front
+    build:
+      context: .
+      dockerfile: Frontend/yerba-shop-front/Dockerfile
+    ports:
+      - 3000:3000

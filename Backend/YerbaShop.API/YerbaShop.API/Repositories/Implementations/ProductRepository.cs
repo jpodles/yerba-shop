@@ -19,7 +19,7 @@ namespace YerbaShop.API.Repositories.Implementations
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-
+        
         public void AddReview(Review review)
         {
             if (review == null)
@@ -29,7 +29,8 @@ namespace YerbaShop.API.Repositories.Implementations
 
             _context.Reviews.Add(review);
         }
-
+        
+        
         public void DeleteReview(int reviewId)
         {
             if (reviewId == 0)
@@ -39,6 +40,7 @@ namespace YerbaShop.API.Repositories.Implementations
 
             _context.Remove(_context.Reviews.First(r => r.Id == reviewId));
             _context.SaveChanges();
+            
         }
 
         public async Task<Product> GetProductAsync(int id)

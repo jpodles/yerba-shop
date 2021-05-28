@@ -80,6 +80,8 @@ namespace YerbaShop.API
 
             services.AddScoped<IProductRepository, ProductRepository>();
 
+
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

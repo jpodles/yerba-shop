@@ -12,11 +12,12 @@ namespace YerbaShop.API.Entities
         [Required]
         [Column(TypeName = "decimal(18,4)")]
         public decimal OrderPrice { get; set; }
-
-        public int OrderHistoryId { get; set; }
-        public OrderHistory OrderHistory { get; set; }
-
+        public int UserId { get; set; }
+        public User User { get; set; }
         public int OrderDetailsId { get; set; }
         public OrderDetails OrderDetails { get; set; }
     }
+
+    //public int OrderHistoryId { get; set; }
+    //public OrderHistory OrderHistory { get; set; }
 }

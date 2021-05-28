@@ -47,7 +47,7 @@ const ProductDetails = () => {
 
       {product && (
         <div className="product-details">
-          <img src={product.ImageLink} alt="ProductImage" />
+          <img src={product.ProductImage} alt="ProductImage" />
           <div className="text">
             <h2>{product.ProductName}</h2>
             <p>Opis produktu:</p>

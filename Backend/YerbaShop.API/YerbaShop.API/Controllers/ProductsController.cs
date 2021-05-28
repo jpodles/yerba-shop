@@ -21,8 +21,11 @@ namespace YerbaShop.API.Controllers
 
         public ProductsController(IProductRepository yerbaShopRepository, IMapper mapper)
         {
-            _yerbaShopRepository = yerbaShopRepository ?? throw new ArgumentNullException(nameof(yerbaShopRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(yerbaShopRepository));
+            _yerbaShopRepository = yerbaShopRepository
+                ?? throw new ArgumentNullException(nameof(yerbaShopRepository));
+            _mapper = mapper
+                ?? throw new ArgumentNullException(nameof(yerbaShopRepository));
+
         }
 
         [HttpGet]
@@ -30,6 +33,7 @@ namespace YerbaShop.API.Controllers
         {
             var productsEntites = await _yerbaShopRepository.GetProductsAsync();
             return Ok(_mapper.Map<IEnumerable<ProductShortDto>>(productsEntites));
+
         }
 
         [HttpGet("{productId}", Name = "GetProduct")]
